@@ -43,7 +43,6 @@ namespace Completed
 			{
 				skipMove = false;
 				return;
-				
 			}
 			
 			//Call the AttemptMove function from MovingObject.
@@ -94,5 +93,12 @@ namespace Completed
 			//Call the RandomizeSfx function of SoundManager passing in the two audio clips to choose randomly between.
 			SoundManager.instance.RandomizeSfx (attackSound1, attackSound2);
 		}
-	}
+
+        public void OnDestroy()
+        {
+            Destroy(gameObject);
+
+            //ここにアイテムのドロップを書く
+        }
+    }
 }
