@@ -14,6 +14,7 @@ namespace Completed
         //*******浅見追加******
         public int pointsPerBief = 10;              
         public int pointsPerPoison = 20;
+        public int pointsPerSusi = 500;
         //*********************
         public int wallDamage = 1;					//How much damage a player does to a wall when chopping it.
 		public Text foodText;						//UI Text to display current player food total.
@@ -179,12 +180,8 @@ namespace Completed
             {
                 Enemy hitEnemy = component as Enemy;
 
-                
+                hitEnemy.hp -= 1;
             }
-
-            
-			
-			
 			
 			//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
 			animator.SetTrigger ("playerChop");
@@ -251,6 +248,16 @@ namespace Completed
                 food += pointsPerPoison;
 
                 foodText.text = pointsPerPoison + " Poison: " + food;
+
+                SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
+
+                other.gameObject.SetActive(false);
+            }
+            else if (other.tag == "Susi")
+            {
+                food += 500;
+
+                foodText.text = "Congratulation! You got a RareItem!!";
 
                 SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
 
