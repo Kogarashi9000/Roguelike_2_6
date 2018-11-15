@@ -153,7 +153,7 @@ namespace Completed
 			
 			//Wait for turnDelay seconds, defaults to .1 (100 ms).
 			yield return new WaitForSeconds(turnDelay);
-			
+
 			//If there are no enemies spawned (IE in first level):
 			if (enemies.Count == 0) 
 			{
@@ -164,6 +164,12 @@ namespace Completed
 			//Loop through List of Enemy objects.
 			for (int i = 0; i < enemies.Count; i++)
 			{
+                if(enemies[i].hp < 1)
+                {
+                    Destroy(enemies[i]);
+                    enemies.Remove(enemies[i]);
+                    continue;
+                }
 				//Call the MoveEnemy function of Enemy at index i in the enemies List.
 				enemies[i].MoveEnemy ();
 				
